@@ -1,0 +1,117 @@
+/* Réinitialisation du style de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Appliquer une couleur de fond sombre et une police professionnelle */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #111; /* Fond sombre */
+    color: #ddd; /* Texte clair */
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Container du formulaire avec des ombres et un fond blanc */
+.container {
+    width: 50%;
+    padding: 30px;
+    background-color: #2a2a2a; /* Fond foncé pour le container */
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    color: #fff;
+}
+
+/* Titre principal avec couleur contrastée */
+h2 {
+    text-align: center;
+    color: #f1f1f1;
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+
+/* Style général pour le formulaire */
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Style pour chaque champ de formulaire */
+form div {
+    margin-bottom: 20px;
+}
+
+/* Style des champs de saisie (input) */
+input {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    background-color: #333; /* Fond sombre pour les inputs */
+    color: #f1f1f1; /* Texte clair */
+    border: 1px solid #444;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #4CAF50; /* Bordure verte lorsque le champ est sélectionné */
+}
+
+/* Style pour les boutons */
+button {
+    padding: 12px;
+    font-size: 16px;
+    color: white;
+    background-color: #4CAF50; /* Vert professionnel */
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049; /* Effet hover pour un bouton plus sombre */
+    transform: scale(1.05); /* Effet zoom sur le bouton */
+}
+
+/* Style des champs obligatoires */
+.required {
+    color: #ff3b30; /* Rouge pour les champs obligatoires */
+}
+
+/* Affichage des messages d'erreur */
+.error {
+    color: #ff3b30;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* Style pour le message de succès */
+.success-message {
+    color: #4CAF50;
+    text-align: center;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* Ajout d'un peu d'espace autour des éléments pour le design responsive */
+@media (max-width: 768px) {
+    .container {
+        width: 80%;
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    button {
+        font-size: 14px;
+    }
+}
