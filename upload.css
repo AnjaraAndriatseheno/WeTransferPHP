@@ -13,7 +13,6 @@ body {
     color: #000;
 }
 
-/* --- HEADER --- */
 header {
     background: #181818;
     color: white;
@@ -69,67 +68,66 @@ nav ul li a:hover::after {
     width: 100%;
 }
 
-/* --- FORMULAIRE --- */
 main {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 80vh;
+    flex-direction: column;
 }
 
-.form-container {
-    text-align: center;
-    animation: fadeInUp 1s ease-out;
-}
-
-h1 {
-    font-size: 32px;
-    margin-bottom: 20px;
-}
-
-.input-group {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 15px;
-}
-
-.input-group input {
+.upload-box {
     background: black;
     color: white;
-    border: 2px solid transparent;
-    padding: 12px;
-    font-size: 18px;
-    width: 250px;
-    border-radius: 5px;
-    outline: none;
-    transition: border 0.3s ease-in-out, transform 0.3s ease-in-out;
+    width: 300px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    transform: scale(1);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-.input-group input::placeholder {
-    color: rgba(255, 255, 255, 0.6);
-}
-
-.input-group input:focus {
-    border: 2px solid white;
+.upload-box:hover {
     transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
-p {
-    font-size: 14px;
-    color: #666;
-    margin: 10px 0;
-    opacity: 0;
-    animation: fadeIn 1s ease-out 1.2s forwards;
+.upload-label {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
 }
 
-/* --- BOUTON --- */
+.plus-icon {
+    font-size: 24px;
+    border: 2px solid white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    animation: pulse 1.5s infinite;
+}
+
+.upload-label:hover .plus-icon {
+    transform: rotate(180deg);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
 button {
     background: white;
     border: none;
     color: black;
-    padding: 12px 25px;
-    font-size: 18px;
+    padding: 10px 20px;
+    font-size: 16px;
     font-weight: bold;
     border-radius: 5px;
     margin-top: 15px;
@@ -144,11 +142,26 @@ button:hover {
     transform: scale(1.05);
 }
 
-button:active {
-    transform: scale(0.95);
+.success-message {
+    color: black; 
+    font-size: 18px; 
+    font-weight: bold;
+    margin-bottom: 15px; 
+    text-align: center; 
+    width: 100%; 
 }
 
-/* --- Animations Keyframes --- */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 @keyframes fadeInDown {
     from {
         opacity: 0;
@@ -160,22 +173,14 @@ button:active {
     }
 }
 
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+    50% {
+        box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
     }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
+    100% {
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
     }
 }

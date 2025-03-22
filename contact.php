@@ -1,26 +1,24 @@
 <?php
-// Connexion à la base de données MySQL qui va stocker les données des UI
-$servername = "localhost"; // Serveur MySQL 
-$username = "root"; // Nom d'utilisateur MySQL
-$password = ""; // Mot de passe MySQL (vide)
-$dbname = "Projet_php"; // Nom de la base de données
+// Connexion à la base de données 
+$host = "localhost";
+$dbname = "Projet_php";
+$username = "root"; 
+$password = ""; 
 
-// Créer une connexion à MySQL
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Vérifier si la connexion a échoué
-if ($conn->connect_error) {
-    die("Échec de la connexion à la base de données: " . $conn->connect_error);
-}//die pour arrêter l'exécution du script et afficher un message d'erreur
+try {
+    // Créer une connexion
+    $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Erreur de connexion : " . $e->getMessage());
+}
 
 // Déclaration des variables pour stocker les valeurs du formulaire
 $firstname = $name = $email = $phone = $pays = $password = "";
 $firstnameError = $nameError = $emailError = $phoneError = $paysError = $passwordError = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    // Récupérer les données soumises du formulaire
-    $firstname = trim($_POST['firstname']); //trim() pour supprimer les espaces blancs et les caractères spéciaux
+    $firstname = trim($_POST['firstname']);
     $name = trim($_POST['name']);
     $email = trim($_POST['email']);
     $phone = trim($_POST['phone']);
@@ -28,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = trim($_POST['password']);
 
     // Validation des champs
-    $isValid = true; // Variable pour vérifier si tous les champs sont valides
+    $isValid = true;
 
     // Validation du prénom
     if (empty($firstname)) {
@@ -70,24 +68,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if ($isValid) {
-        // Hasher le mot de passe pour le stocker de façon sécurisée
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-        // insertion dans la table 'utilisateurs'
+        // Requête SQL pour insérer les données dans la table 'utilisateurs'
         $sql = "INSERT INTO utilisateurs (nom, prenom, email, telephone, pays, mot_de_passe)
-                VALUES ('$name', '$firstname', '$email', '$phone', '$pays', '$hashedPassword')";
+                VALUES (:name, :firstname, :email, :phone, :pays, :password)";
 
-        // Exécuter la requête et vérifier si l'insertion a réussi
-        if ($conn->query($sql) === TRUE) {
-            // Redirection vers la même page avec un message de succès
-            header("Location: contact.php?success=1");
-            exit(); 
-        } else {
-            echo "Erreur lors de l'insertion : " . $conn->error; //Afficher l'erreur SQL
+        try {
+            // Préparer la requête avec PDO
+            $stmt = $conn->prepare($sql);
+            
+            $stmt->bindParam(':name', $name);
+            $stmt->bindParam(':firstname', $firstname);
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':phone', $phone);
+            $stmt->bindParam(':pays', $pays);
+            $stmt->bindParam(':password', $hashedPassword);
+
+            if ($stmt->execute()) {
+                // Redirection vers la page de téléchargement (upload.php)
+                header("Location: upload.php?success=1");
+                exit();
+            } else {
+                echo "Erreur lors de l'insertion.";
+            }
+        } catch (PDOException $e) {
+            echo "Erreur lors de l'insertion dans la base de données : " . $e->getMessage();
         }
     }
 
-    // Fermer la connexion à la base de données
-    $conn->close();
+    // Fermer la connexion PDO
+    $conn = null;
 }
 ?>
