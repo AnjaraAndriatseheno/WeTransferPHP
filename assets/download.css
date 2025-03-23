@@ -1,7 +1,5 @@
-/* 引入字体 */
 @import url('https://fonts.googleapis.com/css2?family=Island+Moments&family=Roboto:wght@300&display=swap');
 
-/* 全局样式 */
 * {
     margin: 0;
     padding: 0;
@@ -15,7 +13,6 @@ body {
     color: #000;
 }
 
-/* 头部样式 */
 header {
     background-color: #181818;
     color: white;
@@ -33,7 +30,6 @@ nav a {
     margin-right: 20px;
 }
 
-/* 主体内容样式 */
 main {
     padding: 20px;
 }

@@ -1,10 +1,10 @@
 <?php
 require_once 'BD.php';
-require_once 'fonctions.php';
+require_once 'functions.php';
 session_start();
 
 if (!getUserID()) {
-    header("Location: connexion.php");
+    header("Location: connexionDB.php");
     exit();
 }
 
