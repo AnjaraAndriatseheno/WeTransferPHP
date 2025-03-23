@@ -20,7 +20,7 @@ if($_SERVER["REQUEST_METHOD"] === "POST"){
         // file_put_contents("uploads/$name", file_get_contents($temp_name));
         echo "Fichier envoyé avec succes !"
         }
-    }
+    } 
 
     if (isset($_POST[delete_file])) {
         $file_to_delete = $_POST["delete_file"];
