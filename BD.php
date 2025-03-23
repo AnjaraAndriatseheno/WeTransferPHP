@@ -1,8 +1,8 @@
 <?php
 $host = "localhost";
 $dbname = "Projet_php";
-$username = "root"; // Modifier si nécessaire
-$password = ""; // Modifier si besoin
+$username = "root";
+$password = "BDPHP"; 
 
 try {
     $conn = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
