@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-<!-- fichier pour gérer l'upload et assurer l'enregistrement dans la BD -->
-
 <?php
 require 'BD.php';
 
