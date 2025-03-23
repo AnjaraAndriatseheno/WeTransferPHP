@@ -39,4 +39,5 @@ try {
 } catch (PDOException $e) {
     echo "Erreur lors de la création des tables : " . $e->getMessage();
 }
+
 ?>
