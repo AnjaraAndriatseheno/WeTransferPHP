@@ -7,7 +7,7 @@ try {
     $sql = "CREATE TABLE IF NOT EXISTS utilisateurs (
         id INT AUTO_INCREMENT PRIMARY KEY,
         nom VARCHAR(255) NOT NULL,
-        prenom VARCHAR(255) NOT NULL,
+        prenom VARCHAR(255) NOT NULL,fi
         email VARCHAR(255) UNIQUE NOT NULL,
         telephone VARCHAR(20),
         pays VARCHAR(100),
@@ -35,6 +35,7 @@ try {
     )";
     $conn->exec($sql);
     echo "Table 'file_access' créée avec succès.<br>";
+
 
 } catch (PDOException $e) {
     echo "Erreur lors de la création des tables : " . $e->getMessage();
